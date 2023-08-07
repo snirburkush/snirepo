@@ -42,18 +42,18 @@ public class SqlOnlyInputValidation extends AssignmentEndpoint {
     this.lesson6a = lesson6a;
   }
 
-  @PostMapping("/SqlOnlyInputValidation/attack")
-  @ResponseBody
-  public AttackResult attack(@RequestParam("userid_sql_only_input_validation") String userId) {
-    if (userId.contains(" ")) {
-      return failed(this).feedback("SqlOnlyInputValidation-failed").build();
-    }
-    AttackResult attackResult = lesson6a.injectableQuery(userId);
-    return new AttackResult(
-        attackResult.isLessonCompleted(),
-        attackResult.getFeedback(),
-        attackResult.getOutput(),
-        getClass().getSimpleName(),
-        true);
+  @PutMapping("/SqlOnlyInputValidation/attack")
+@ResponseBody
+public AttackResult attack(@RequestParam("userid_sql_only_input_validation") String userId) {
+  if (userId.contains(" ")) {
+    return failed(this).feedback("SqlOnlyInputValidation-failed").build();
   }
+  AttackResult attackResult = lesson6a.injectableQuery(userId);
+  return new AttackResult(
+      attackResult.isLessonCompleted(),
+      attackResult.getFeedback(),
+      attackResult.getOutput(),
+      getClass().getSimpleName(),
+      true);
+}
 }
