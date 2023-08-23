@@ -1,1 +1,2 @@
-x = 123
+user='snir'
+password='Aa123123'
